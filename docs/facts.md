@@ -25,7 +25,7 @@ Note: the evidence column paraphrases search-result excerpts, most of which were
 
 | # | On-screen text (German) | Figure | Base group | Source wording / evidence | Status | Page |
 |---|---|---|---|---|---|---|
-| F1 | „1.763 junge Menschen + 1.325 Azubis, online befragt, Frühjahr 2026" + stamp „REPRÄSENTATIV" | 1,763 + 1,325; online, March to mid-April 2026 | 14–25-year-olds; apprentices 15–25 | Search results for the same survey wave (Bertelsmann „Ausbildungsperspektiven 2026", paraphrased): 1.763 junge Menschen im Alter von 14 bis 25 Jahren sowie 1.325 Auszubildende … online von März bis Mitte April 2026 | ✅ | S. ? |
+| F1 | „1.763 junge Menschen + 1.325 Azubis" + „online befragt · Frühjahr 2026" + stamp „REPRÄSENTATIV" | 1,763 + 1,325; online, March to mid-April 2026 | 14–25-year-olds; apprentices 15–25 | Search results for the same survey wave (Bertelsmann „Ausbildungsperspektiven 2026", paraphrased): 1.763 junge Menschen im Alter von 14 bis 25 Jahren sowie 1.325 Auszubildende … online von März bis Mitte April 2026 | ✅ | S. ? |
 | F2 | „Selbstständig bis 30?" → „9 % – haben es fest vor" | 9 % | all 14–25-year-olds surveyed | dpa (paraphrased from search results): Fast jede:r Zehnte hat die feste Absicht, sich bis zum 30. Geburtstag selbstständig zu machen; brief: 9 % | ✅ (≈ one in ten) / ☑️ exact 9 | S. ? |
 | F3 | „28 % – vorstellbar, aber noch unsicher" | 28 % | same | brief: "28 % can imagine it but aren't sure" | ☑️ | S. ? |
 | F4 | „31 % – eher nicht, aber nicht ausgeschlossen" | 31 % | same | brief: "31 % rather not but don't rule it out" | ☑️ | S. ? |

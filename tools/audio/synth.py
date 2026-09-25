@@ -201,28 +201,44 @@ MEL = {  # (beat, midi, len)
 A = ['C', 'G', 'Am', 'F']
 
 
+FINALE_MEL = {  # last slide: brighter, rising phrases that point to the final chord
+    0: [(0, 72, .5), (.5, 77, .5), (1, 81, .5), (1.5, 84, 1), (3, 81, .5), (3.5, 79, .5)],             # over F
+    1: [(0, 79, .5), (.5, 83, .5), (1, 86, 1), (2, 79, .25), (2.25, 81, .25), (2.5, 83, .25), (2.75, 86, .25), (3, 88, .5), (3.5, 91, .5)],  # over G, runs up into the final C
+}
+
+
 def arrangement():
-    """Per-bar plan: chord + which parts play. 27 bars × 2 s = 54 s."""
+    """Per-bar plan: chord + which parts play (2 s per bar at 120 BPM).
+    Sections follow the story markers from cues.json, so they move with the slides."""
     nb = int(np.ceil(DUR / BAR))
+    mk = CUES.get('markers', {})
+    b_start = int(np.ceil(mk.get('barriers', 23.0) / BAR))            # thoughtful B section
+    twist = int(mk.get('twist', 28.5) // BAR)                          # stop-time bar at the money twist
+    good = int(round(mk.get('good', 34.0) / BAR))                      # bright C section
+    fin = int(round(mk.get('end', 48.0) / BAR))                        # last slide: finale
     plan = []
     for b in range(nb):
         t0 = b * BAR
-        p = dict(bar=b, t=t0, chord=A[b % 4], uke=0.8, strum='full', mel=0, kick=0, clap=0, shak=0, bass=0, glock=0)
-        if b <= 3:                       # intro / hook (0–8 s)
+        p = dict(bar=b, t=t0, chord=A[b % 4], uke=0.8, strum='full', mel=0, kick=0, clap=0, shak=0, bass=0, glock=0, lift=1.0)
+        if b <= 3:                       # intro / hook
             p.update(uke=0.9, strum='full', shak=1, clap=1 if b >= 2 else 0, mel=1 if b >= 1 else 0, bass=1 if b >= 1 else 0)
             p['mel_sparse'] = True
-        elif b <= 10:                    # A: study + crowd (8–22 s)
+        elif b < b_start:                # A: study + crowd
             p.update(kick=1, clap=1, shak=1, bass=1, mel=1)
-        elif b <= 13:                    # B: barriers, thoughtful (22–28 s)
-            p.update(chord=['Am', 'Em', 'F'][b - 11], strum='mute', clap=1, shak=1, bass=1, mel=0, uke=0.75)
-        elif b == 14:                    # twist: stop-time (28–30 s)
+        elif b < twist:                  # B: barriers, thoughtful
+            p.update(chord=['Am', 'Em', 'F', 'G'][(b - b_start) % 4], strum='mute', clap=1, shak=1, bass=1, mel=0, uke=0.75)
+        elif b == twist:                 # twist: stop-time
             p.update(chord='G', strum='stops', shak=1, bass=0, uke=0.8)
-        elif b <= 16:                    # build to the good news (30–34 s)
-            p.update(chord=['F', 'G'][b - 15], strum='full', clap=2 if b == 16 else 1, shak=1, bass=1, kick=1 if b == 15 else 0)
-            p['riser'] = b == 16
-        elif b <= 25:                    # C: good news, GEM, end (34–52 s)
-            p.update(kick=1, clap=1, shak=1, bass=1, mel=1, glock=1, uke=0.85)
-        else:                            # final chord (52–54 s)
+        elif b < good:                   # build to the good news
+            p.update(chord=['F', 'G'][(b - twist - 1) % 2], strum='full', clap=2 if b == good - 1 else 1, shak=1, bass=1, kick=1 if b < good - 1 else 0)
+            p['riser'] = b == good - 1
+        elif b < fin:                    # C: good news, GEM (starts on the home chord)
+            p.update(chord=A[(b - good) % 4], kick=1, clap=1, shak=1, bass=1, mel=1, glock=1, uke=0.85)
+            p['pickup'] = b == fin - 1   # little marimba run into the finale
+        elif b < nb - 1:                 # FINALE: last slide – a touch brighter and busier, cadence F -> G -> C
+            p.update(chord=['F', 'G'][(b - fin) % 2], kick=2, clap=1, shak=2, bass=2, mel=1, glock=0, uke=0.9, lift=0.93)
+            p['finale'] = b - fin
+        else:                            # final chord + ding
             p.update(chord='C', strum='final', kick=0, clap=0, shak=0, bass=0, mel=0, glock=1)
         plan.append(p)
     return plan
@@ -257,14 +273,17 @@ def render_music():
                 place(send, s, ts + k * 0.011, gain * 0.35, pan)
         # --- bass
         if p['bass']:
-            for bt, off in [(0, 0), (1.5, 7 if p['chord'] in ('C', 'G', 'F') else 0), (2, 0), (3.5, 12)]:
+            pat = [(0, 0), (1.5, 7 if p['chord'] in ('C', 'G', 'F') else 0), (2, 0), (3.5, 12)]
+            if p['bass'] == 2:
+                pat = [(k * 0.5, 12 if k % 2 else 0) for k in range(8)]
+            for bt, off in pat:
                 m = root + off
-                place(dry, bass(mtof(m), 0.42), t0 + bt * BEAT, 0.3, 0)
+                place(dry, bass(mtof(m), 0.42), t0 + bt * BEAT, 0.3 if p['bass'] == 1 or off == 0 else 0.16, 0)
         # --- drums
         for bt in range(4):
             tb = t0 + bt * BEAT
-            if p['kick'] and bt in (0, 2):
-                place(dry, kick(), tb, 0.34, 0)
+            if p['kick'] and (bt in (0, 2) or p['kick'] == 2):
+                place(dry, kick(), tb, 0.34 if bt in (0, 2) else 0.14, 0)
             if p['clap'] and bt in (1, 3):
                 c = clap()
                 place(dry, c, tb, 0.14, 0.12)
@@ -272,10 +291,24 @@ def render_music():
             if p['clap'] == 2:
                 place(dry, clap(), tb + BEAT / 2, 0.07 + 0.02 * bt, -0.1)
             if p['shak']:
-                for h in range(2):
-                    place(dry, shaker(accent=0.6 if h == 0 else 1.0), tb + h * BEAT / 2, 0.05, 0.35)
+                steps = 4 if p['shak'] == 2 else 2
+                for h in range(steps):
+                    place(dry, shaker(accent=[0.6, 1.0][h % 2] if steps == 2 else [0.7, 0.4, 1.0, 0.4][h]), tb + h * BEAT / steps, 0.05, 0.35)
+            if p.get('finale') == 1 and bt == 3:   # extra off-beat clap before the last chord
+                place(dry, clap(), tb + BEAT / 2, 0.09, -0.1)
         # --- marimba melody
-        if p['mel']:
+        if p.get('pickup'):   # marimba run leading into the last slide
+            for k, m in enumerate([72, 74, 76, 79]):
+                place(dry, marimba(mtof(m), 0.5), t0 + 3 * BEAT + k * BEAT / 4, 0.1, 0.2)
+        if p.get('finale') is not None:
+            for (bt, m, ln) in FINALE_MEL[p['finale']]:
+                s = marimba(mtof(m), dur=0.9)
+                place(dry, s, t0 + bt * BEAT, 0.12, 0.2)
+                place(send, s, t0 + bt * BEAT, 0.07, 0.2)
+                g = glock(mtof(m + 12), 0.9)   # glockenspiel doubles the finale melody an octave up
+                place(dry, g, t0 + bt * BEAT, 0.03, -0.3)
+                place(send, g, t0 + bt * BEAT, 0.03, 0)
+        elif p['mel']:
             phrase = MEL.get(p['chord'], MEL['C'])
             if p.get('mel_sparse'):
                 phrase = phrase[:2] + phrase[-1:]
@@ -314,6 +347,14 @@ def render_music():
     wet = np.stack([signal.fftconvolve(send[0], ir[0])[: dry.shape[1]], signal.fftconvolve(send[1], ir[1])[: dry.shape[1]]])
     out = dry + 0.55 * wet
     out = out[:, :N]
+    # finale bars: level trim so the busier arrangement only lifts ~1 LU (not a crescendo), smoothed
+    lift = np.ones(out.shape[1])
+    for p in arrangement():
+        if p['lift'] != 1.0:
+            lift[int(p['t'] * SR): int((p['t'] + BAR) * SR)] = p['lift']
+    k = int(0.4 * SR)
+    lift = np.convolve(np.pad(lift, (k, k), mode='edge'), np.ones(k) / k, mode='same')[k:-k]
+    out *= lift[: out.shape[1]]
     # gentle glue: soft saturation + master fade-out of the final chord
     out = np.tanh(out * 1.4) / 1.4
     fade = int(1.5 * SR)

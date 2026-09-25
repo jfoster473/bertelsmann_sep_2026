@@ -21,6 +21,8 @@ tools/
   build_single.js         builds export/player.html (everything inlined)
   cues.js                 writes the SFX cue list from the timeline
   audio/synth.py          synthesises music + SFX, mixes and masters
+  pace.js                 spoken-rhythm timing of each slide's lines (--write updates timeline.js)
+  copy_doc.js             regenerates docs/copy.md (DE + EN with timings)
   qa.js                   reading-time + safe-zone check → docs/qa_pacing.md
   check_numbers.js        every on-screen number vs. docs/facts.md
   test_player.js          automated test of player controls + audio sync
@@ -53,6 +55,16 @@ Open `project/src/data/timeline.js`:
 - **Character**: the `character` keyframes (position, scale, pose, mouth, brows, flip).
 - **Length**: `duration` (the brief allows 40–55 s).
 
+Re-flow the timings so the lines arrive at a spoken rhythm (optional, but recommended after text changes):
+
+```bash
+node tools/pace.js            # shows the proposed schedule per slide
+node tools/pace.js --write    # writes the in/out times (and dependent events) into timeline.js
+node tools/copy_doc.js        # refreshes docs/copy.md
+```
+
+The reading order per slide is in `ORDER` at the top of `tools/pace.js`.
+
 Then run the checks:
 
 ```bash
@@ -77,9 +89,9 @@ node tools/test_player.js          # optional: controls + sync test
 `tools/audio/synth.py` is the whole audio pipeline:
 
 - **Music balance**: in `main()`, `music *= db(-20 - lm)` sets the music bed and `sfx *= db(-21.5 - ls)` the SFX (before the master gain).
-- **Arrangement**: `arrangement()` lists, bar by bar (2 s per bar at 120 BPM), the chord and which parts play. Chord voicings are in `CH` and melodies in `MEL`.
+- **Arrangement**: `arrangement()` lists, bar by bar (2 s per bar at 120 BPM), the chord and which parts play. Sections follow the slide markers in `cues.json` (barriers, money twist, good news, last slide). The last slide plays the finale (`FINALE_MEL`, F → G → final C). Chord voicings are in `CH` and melodies in `MEL`.
 - **SFX**: each cue type maps to a generator in the `SFX` table (`s_thump` for landing text, `s_softswish`, `s_tear` for page turns, …) and a level in `SFX_LEVEL`.
-- **Master**: the target is -14 LUFS integrated, and `CEILING_DBTP = -3.0` gives the lossy encoders headroom. The final MP4 measures -2.7 dBTP.
+- **Master**: the target is -14 LUFS integrated, and `CEILING_DBTP = -3.0` gives the lossy encoders headroom. The final MP4 measures -2.6 dBTP.
 
 ## Add narration later
 

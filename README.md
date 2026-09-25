@@ -6,7 +6,7 @@ A 54-second vertical explainer (1080×1920, 30 fps, German, no narration) about 
 
 | File | What |
 |---|---|
-| `export/video.mp4` | final video, H.264/AAC, −14 LUFS, 42.6 MB |
+| `export/video.mp4` | final video, H.264/AAC, −14 LUFS, 41.2 MB |
 | `export/player.html` | self-contained player (fonts, audio and code inlined), opens offline on any device |
 | `export/project.zip` | complete editable project (without the MP4 and the reference video) |
 

@@ -1,2 +1,2 @@
-transient cues: 64; visible motion within ±2 frames: 62
-without clear motion: [('tick', 9.55), ('tick', 9.8)]
+transient cues: 65; visible motion within ±2 frames: 64
+without clear motion: [('tick', 10.37)]

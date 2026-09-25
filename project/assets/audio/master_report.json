@@ -1,7 +1,7 @@
 {
- "integrated_lufs": -14.0,
+ "integrated_lufs": -14.01,
  "true_peak_dbtp": -3.0,
- "music_lufs_in_mix": -14.97,
- "sfx_lufs_in_mix": -16.48,
- "cues": 140
+ "music_lufs_in_mix": -15.11,
+ "sfx_lufs_in_mix": -16.62,
+ "cues": 142
 }

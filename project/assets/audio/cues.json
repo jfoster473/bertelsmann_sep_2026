@@ -1,6 +1,12 @@
 {
  "duration": 54,
  "bpm": 120,
+ "markers": {
+  "barriers": 23.5,
+  "twist": 30.12,
+  "good": 34,
+  "end": 48
+ },
  "scenes": [
   {
    "id": "hook",
@@ -15,26 +21,26 @@
   {
    "id": "crowd",
    "start": 13,
-   "end": 23
+   "end": 23.5
   },
   {
    "id": "barriers",
-   "start": 23,
-   "end": 33.5
+   "start": 23.5,
+   "end": 34
   },
   {
    "id": "good",
-   "start": 33.5,
-   "end": 41
+   "start": 34,
+   "end": 42
   },
   {
    "id": "gem",
-   "start": 41,
-   "end": 46.5
+   "start": 42,
+   "end": 48
   },
   {
    "id": "end",
-   "start": 46.5,
+   "start": 48,
    "end": 54
   }
  ],
@@ -53,67 +59,67 @@
    "gain": -3
   },
   {
-   "t": 0.81,
-   "type": "slap",
-   "pan": -0.32,
-   "gain": 0
-  },
-  {
-   "t": 1.16,
-   "type": "slapSmall",
-   "pan": 0.26,
-   "gain": 0
-  },
-  {
-   "t": 1.5,
-   "type": "rustleSmall",
-   "pan": 0,
-   "gain": -10
-  },
-  {
-   "t": 1.51,
-   "type": "slap",
-   "pan": -0.36,
-   "gain": 0
-  },
-  {
-   "t": 1.86,
-   "type": "slapSmall",
-   "pan": 0.25,
-   "gain": 0
-  },
-  {
-   "t": 2.21,
-   "type": "slapSmall",
-   "pan": -0.33,
-   "gain": 0
-  },
-  {
-   "t": 2.7,
-   "type": "rustleSmall",
-   "pan": 0,
-   "gain": -10
-  },
-  {
-   "t": 2.86,
+   "t": 0.66,
    "type": "slap",
    "pan": -0.18,
    "gain": 0
   },
   {
-   "t": 3.56,
+   "t": 1.08,
+   "type": "rustleSmall",
+   "pan": 0,
+   "gain": -10
+  },
+  {
+   "t": 1.19,
+   "type": "slap",
+   "pan": -0.32,
+   "gain": 0
+  },
+  {
+   "t": 1.59,
+   "type": "slapSmall",
+   "pan": 0.26,
+   "gain": 0
+  },
+  {
+   "t": 2.4,
+   "type": "slap",
+   "pan": -0.36,
+   "gain": 0
+  },
+  {
+   "t": 3.07,
+   "type": "slapSmall",
+   "pan": 0.25,
+   "gain": 0
+  },
+  {
+   "t": 3.87,
+   "type": "slapSmall",
+   "pan": -0.33,
+   "gain": 0
+  },
+  {
+   "t": 4.56,
+   "type": "rustleSmall",
+   "pan": 0,
+   "gain": -10
+  },
+  {
+   "t": 4.67,
    "type": "slap",
    "pan": -0.12,
    "gain": 0
   },
   {
-   "t": 4.1,
+   "t": 5.1,
    "type": "swish",
    "pan": 0,
    "gain": -9
   },
   {
-   "t": 4.3,
+   "t": 5.5,
    "type": "rustleSmall",
    "pan": 0,
    "gain": -10
@@ -150,7 +156,7 @@
    "type": "whooshSmall",
    "pan": 0.6,
    "gain": -5,
-   "dur": 21.25
+   "dur": 22.97
   },
   {
    "t": 7.22,
@@ -159,79 +165,91 @@
    "gain": -6
   },
   {
-   "t": 7.35,
+   "t": 7.4,
    "type": "slide",
    "pan": -0.38,
    "gain": -8
   },
   {
-   "t": 7.558,
+   "t": 7.608,
    "type": "slapSmall",
    "pan": -0.18,
    "gain": -2
   },
   {
-   "t": 7.81,
+   "t": 8.24,
    "type": "slap",
    "pan": -0.18,
    "gain": 0
   },
   {
-   "t": 8.11,
+   "t": 8.67,
    "type": "slap",
    "pan": -0.16,
    "gain": 0
   },
   {
-   "t": 8.41,
+   "t": 9.25,
    "type": "slap",
    "pan": -0.18,
    "gain": 0
   },
   {
-   "t": 8.85,
+   "t": 9.57,
    "type": "slide",
    "pan": -0.38,
    "gain": -8
   },
   {
-   "t": 8.86,
+   "t": 9.63,
    "type": "slap",
    "pan": 0.2,
    "gain": -1
   },
   {
-   "t": 8.95,
+   "t": 9.72,
    "type": "tape",
    "pan": 0.2,
    "gain": -5
   },
   {
-   "t": 9.058,
+   "t": 9.778,
    "type": "slapSmall",
    "pan": -0.18,
    "gain": -2
   },
   {
-   "t": 9.3,
+   "t": 10.07,
    "type": "tick",
    "pan": 0.09,
    "gain": -6
   },
   {
-   "t": 9.55,
+   "t": 10.37,
    "type": "tick",
    "pan": 0.09,
    "gain": -6
   },
   {
-   "t": 9.8,
+   "t": 10.44,
+   "type": "slide",
+   "pan": -0.38,
+   "gain": -8
+  },
+  {
+   "t": 10.648,
+   "type": "slapSmall",
+   "pan": -0.16,
+   "gain": -2
+  },
+  {
+   "t": 10.67,
    "type": "tick",
    "pan": 0.09,
    "gain": -6
   },
   {
-   "t": 10.11,
+   "t": 11.28,
    "type": "stamp",
    "pan": 0.19,
    "gain": 0
@@ -247,7 +265,7 @@
    "type": "whoosh",
    "pan": 0.2,
    "gain": -4,
-   "dur": 0.8000000000000007
+   "dur": 0.8100000000000005
   },
   {
    "t": 12.72,
@@ -270,652 +288,652 @@
    "dur": 0.6
   },
   {
-   "t": 13.25,
+   "t": 13.26,
    "type": "burst",
    "pan": 0,
    "gain": -1
   },
   {
-   "t": 13.35,
+   "t": 13.37,
    "type": "popCascade",
    "pan": 0,
    "gain": -5,
    "dur": 1
   },
   {
-   "t": 13.71,
+   "t": 13.51,
    "type": "slap",
    "pan": -0.18,
    "gain": 0
   },
   {
-   "t": 13.9,
+   "t": 13.87,
    "type": "swish",
    "pan": 0,
    "gain": -9
   },
   {
-   "t": 15,
+   "t": 14.4,
    "type": "shuffle",
    "pan": 0,
    "gain": -4,
    "dur": 1
   },
   {
-   "t": 15.6,
+   "t": 15.35,
    "type": "count",
    "pan": -0.38,
    "gain": -9,
    "dur": 0.6
   },
   {
-   "t": 15.66,
+   "t": 15.41,
    "type": "slapSmall",
    "pan": -0.38,
    "gain": -2
-  },
-  {
-   "t": 16,
-   "type": "count",
-   "pan": -0.38,
-   "gain": -9,
-   "dur": 0.6
   },
   {
    "t": 16.06,
-   "type": "slapSmall",
-   "pan": -0.38,
-   "gain": -2
-  },
-  {
-   "t": 16.4,
    "type": "count",
    "pan": -0.38,
    "gain": -9,
    "dur": 0.6
   },
   {
-   "t": 16.46,
+   "t": 16.12,
    "type": "slapSmall",
    "pan": -0.38,
    "gain": -2
   },
   {
-   "t": 16.8,
+   "t": 16.78,
    "type": "count",
    "pan": -0.38,
    "gain": -9,
    "dur": 0.6
   },
   {
-   "t": 16.86,
+   "t": 16.84,
    "type": "slapSmall",
    "pan": -0.38,
    "gain": -2
   },
   {
-   "t": 17.2,
+   "t": 17.61,
    "type": "count",
    "pan": -0.38,
    "gain": -9,
    "dur": 0.6
   },
   {
-   "t": 17.26,
+   "t": 17.67,
    "type": "slapSmall",
    "pan": -0.38,
    "gain": -2
   },
   {
-   "t": 17.85,
+   "t": 18.08,
+   "type": "count",
+   "pan": -0.38,
+   "gain": -9,
+   "dur": 0.6
+  },
+  {
+   "t": 18.14,
+   "type": "slapSmall",
+   "pan": -0.38,
+   "gain": -2
+  },
+  {
+   "t": 18.17,
    "type": "whooshSmall",
    "pan": -0.18,
    "gain": -6
   },
   {
-   "t": 18.46,
+   "t": 18.73,
    "type": "slap",
    "pan": -0.18,
    "gain": 0
   },
   {
-   "t": 18.5,
+   "t": 18.77,
    "type": "cheer",
    "pan": 0.07,
    "gain": -6
   },
   {
-   "t": 18.85,
-   "type": "swish",
-   "pan": 0,
-   "gain": -9
-  },
-  {
-   "t": 18.86,
+   "t": 19.33,
    "type": "slapSmall",
    "pan": -0.14,
    "gain": 0
   },
   {
-   "t": 22.95,
+   "t": 19.93,
+   "type": "swish",
+   "pan": 0,
+   "gain": -9
+  },
+  {
+   "t": 23.45,
    "type": "whoosh",
    "pan": -0.4,
    "gain": -1,
    "dur": 0.7
   },
   {
-   "t": 23.05,
+   "t": 23.55,
    "type": "sheet",
    "pan": -0.4,
    "gain": -3,
    "dur": 0.6
   },
   {
-   "t": 23.35,
+   "t": 23.85,
    "type": "pop",
    "pan": -0.39,
    "gain": -3
   },
   {
-   "t": 23.46,
+   "t": 24.01,
    "type": "slap",
    "pan": -0.18,
    "gain": 0
   },
   {
-   "t": 23.8,
+   "t": 24.88,
    "type": "slide",
    "pan": -0.38,
    "gain": -8
   },
   {
-   "t": 24.008,
+   "t": 25.088,
    "type": "slapSmall",
    "pan": -0.17,
    "gain": -2
   },
   {
-   "t": 24.4,
+   "t": 26.19,
    "type": "pop",
    "pan": -0.47,
    "gain": -6
   },
   {
-   "t": 24.51,
+   "t": 26.3,
    "type": "slapSmall",
    "pan": -0.27,
    "gain": -2
   },
   {
-   "t": 24.55,
+   "t": 26.34,
    "type": "slide",
    "pan": -0.16,
    "gain": -4,
    "dur": 0.7
   },
   {
-   "t": 24.75,
+   "t": 26.54,
    "type": "count",
    "pan": 0.18,
    "gain": -9,
    "dur": 0.6
   },
   {
-   "t": 25.3,
+   "t": 27.34,
    "type": "pop",
    "pan": -0.47,
    "gain": -6
   },
   {
-   "t": 25.41,
+   "t": 27.45,
    "type": "slapSmall",
    "pan": -0.27,
    "gain": -2
   },
   {
-   "t": 25.45,
+   "t": 27.49,
    "type": "slide",
    "pan": -0.16,
    "gain": -4,
    "dur": 0.7
   },
   {
-   "t": 25.65,
+   "t": 27.69,
    "type": "count",
    "pan": 0.18,
    "gain": -9,
    "dur": 0.6
   },
   {
-   "t": 26.2,
+   "t": 28.49,
    "type": "pop",
    "pan": -0.47,
    "gain": -6
   },
   {
-   "t": 26.31,
+   "t": 28.6,
    "type": "slapSmall",
    "pan": -0.27,
    "gain": -2
   },
   {
-   "t": 26.35,
+   "t": 28.64,
    "type": "slide",
    "pan": -0.16,
    "gain": -4,
    "dur": 0.7
   },
   {
-   "t": 26.55,
+   "t": 28.84,
    "type": "count",
    "pan": 0.18,
    "gain": -9,
    "dur": 0.6
   },
   {
-   "t": 27.1,
+   "t": 29.63,
    "type": "scribble",
    "pan": -0.02,
    "gain": -4,
    "dur": 1.1
   },
   {
-   "t": 28.3,
+   "t": 30.02,
    "type": "whooshSmall",
    "pan": 0.17,
    "gain": -5,
    "dur": 0.5500000000000007
   },
   {
-   "t": 28.56,
+   "t": 30.23,
    "type": "slap",
    "pan": -0.19,
    "gain": 0
   },
   {
-   "t": 28.83,
+   "t": 30.55,
    "type": "slap",
    "pan": 0.17,
    "gain": -1
   },
   {
-   "t": 28.95,
+   "t": 30.67,
    "type": "rustleSmall",
    "pan": -0.39,
    "gain": -10
   },
   {
-   "t": 29.11,
+   "t": 30.83,
    "type": "stamp",
    "pan": 0.22,
    "gain": 0
   },
   {
-   "t": 29.25,
+   "t": 30.97,
    "type": "scribble",
    "pan": 0.2,
    "gain": -3,
    "dur": 0.3
   },
   {
-   "t": 29.35,
+   "t": 31.1,
    "type": "swish",
    "pan": 0,
    "gain": -9
   },
   {
-   "t": 30.4,
+   "t": 32.1,
    "type": "rustleSmall",
    "pan": -0.39,
    "gain": -10
   },
   {
-   "t": 33.35,
+   "t": 33.87,
    "type": "whooshSmall",
    "pan": 0.25,
    "gain": -6
   },
   {
-   "t": 33.35,
+   "t": 33.87,
    "type": "whooshSmall",
    "pan": 0.22,
    "gain": -6
   },
   {
-   "t": 33.45,
+   "t": 33.95,
    "type": "whoosh",
    "pan": 0.4,
    "gain": -1,
    "dur": 0.7
   },
   {
-   "t": 33.55,
+   "t": 34.05,
    "type": "sheet",
    "pan": 0.4,
    "gain": -3,
    "dur": 0.6
   },
   {
-   "t": 33.55,
+   "t": 34.05,
    "type": "whooshSmall",
    "pan": -0.04,
    "gain": -5,
    "dur": 0.8
   },
   {
-   "t": 33.6,
+   "t": 34.11,
    "type": "hop",
    "pan": 0.29,
    "gain": -5
   },
   {
-   "t": 33.96,
+   "t": 34.51,
    "type": "slap",
    "pan": -0.18,
    "gain": 0
   },
   {
-   "t": 34.17,
+   "t": 34.68,
    "type": "land",
    "pan": 0.29,
    "gain": -6
   },
   {
-   "t": 34.3,
+   "t": 35.22,
    "type": "flip",
    "pan": -0.18,
    "gain": -2
   },
   {
-   "t": 34.96,
+   "t": 35.82,
+   "type": "slide",
+   "pan": -0.38,
+   "gain": -8
+  },
+  {
+   "t": 35.88,
    "type": "stamp",
    "pan": 0.31,
    "gain": 0
   },
   {
-   "t": 35.15,
-   "type": "slide",
-   "pan": -0.38,
-   "gain": -8
-  },
-  {
-   "t": 35.33,
+   "t": 36,
    "type": "tape",
    "pan": -0.13,
    "gain": -4
   },
   {
-   "t": 35.358,
+   "t": 36.028,
    "type": "slapSmall",
    "pan": -0.13,
    "gain": -2
   },
   {
-   "t": 35.5,
+   "t": 36.22,
    "type": "slide",
    "pan": -0.38,
    "gain": -8
   },
   {
-   "t": 35.68,
+   "t": 36.4,
    "type": "tape",
    "pan": -0.13,
    "gain": -4
   },
   {
-   "t": 35.708,
+   "t": 36.428,
    "type": "slapSmall",
    "pan": -0.13,
    "gain": -2
   },
   {
-   "t": 35.95,
-   "type": "flip",
-   "pan": -0.18,
-   "gain": -2
-  },
-  {
-   "t": 36.61,
-   "type": "stamp",
-   "pan": 0.31,
-   "gain": 0
-  },
-  {
-   "t": 36.75,
-   "type": "slide",
-   "pan": -0.38,
-   "gain": -8
-  },
-  {
-   "t": 36.9,
+   "t": 36.77,
    "type": "swish",
    "pan": 0,
    "gain": -9
   },
   {
-   "t": 36.93,
-   "type": "tape",
-   "pan": -0.13,
-   "gain": -4
-  },
-  {
-   "t": 36.958,
-   "type": "slapSmall",
-   "pan": -0.13,
+   "t": 37.83,
+   "type": "flip",
+   "pan": -0.18,
    "gain": -2
   },
   {
-   "t": 37.1,
+   "t": 38.43,
    "type": "slide",
    "pan": -0.38,
    "gain": -8
   },
   {
-   "t": 37.28,
+   "t": 38.49,
+   "type": "stamp",
+   "pan": 0.31,
+   "gain": 0
+  },
+  {
+   "t": 38.61,
    "type": "tape",
    "pan": -0.13,
    "gain": -4
   },
   {
-   "t": 37.308,
+   "t": 38.638,
    "type": "slapSmall",
    "pan": -0.13,
    "gain": -2
   },
   {
-   "t": 40.95,
+   "t": 39.43,
+   "type": "slide",
+   "pan": -0.38,
+   "gain": -8
+  },
+  {
+   "t": 39.61,
+   "type": "tape",
+   "pan": -0.13,
+   "gain": -4
+  },
+  {
+   "t": 39.638,
+   "type": "slapSmall",
+   "pan": -0.13,
+   "gain": -2
+  },
+  {
+   "t": 41.95,
    "type": "whoosh",
    "pan": 0,
    "gain": -1,
    "dur": 0.7
   },
   {
-   "t": 40.95,
+   "t": 41.95,
    "type": "hop",
    "pan": 0.38,
    "gain": -5
   },
   {
-   "t": 41.05,
+   "t": 42.05,
    "type": "sheet",
    "pan": 0,
    "gain": -3,
    "dur": 0.6
   },
   {
-   "t": 41.46,
+   "t": 42.51,
    "type": "slap",
    "pan": -0.18,
    "gain": 0
   },
   {
-   "t": 41.52,
+   "t": 42.52,
    "type": "land",
    "pan": 0.38,
    "gain": -6
   },
   {
-   "t": 41.65,
+   "t": 42.91,
    "type": "slide",
    "pan": -0.38,
    "gain": -8
   },
   {
-   "t": 41.81,
-   "type": "slap",
-   "pan": 0,
-   "gain": -2
-  },
-  {
-   "t": 41.858,
+   "t": 43.118,
    "type": "slapSmall",
    "pan": -0.17,
    "gain": -2
   },
   {
-   "t": 42.05,
+   "t": 43.79,
+   "type": "slap",
+   "pan": 0,
+   "gain": -2
+  },
+  {
+   "t": 44.03,
    "type": "rise",
    "pan": -0.27,
    "gain": -3,
    "dur": 0.8
   },
   {
-   "t": 42.1,
-   "type": "slide",
-   "pan": -0.38,
-   "gain": -8
-  },
-  {
-   "t": 42.308,
-   "type": "slapSmall",
-   "pan": -0.17,
-   "gain": -2
-  },
-  {
-   "t": 42.71,
-   "type": "slapSmall",
-   "pan": -0.27,
-   "gain": -2
-  },
-  {
-   "t": 42.85,
+   "t": 44.43,
    "type": "rise",
    "pan": 0.07,
    "gain": -3,
    "dur": 0.8
   },
   {
-   "t": 43.3,
-   "type": "swish",
-   "pan": 0,
-   "gain": -9
+   "t": 44.69,
+   "type": "slapSmall",
+   "pan": -0.27,
+   "gain": -2
   },
   {
-   "t": 43.5,
+   "t": 44.83,
+   "type": "slide",
+   "pan": -0.38,
+   "gain": -8
+  },
+  {
+   "t": 45.038,
+   "type": "slapSmall",
+   "pan": -0.17,
+   "gain": -2
+  },
+  {
+   "t": 45.09,
+   "type": "slapSmall",
+   "pan": 0.07,
+   "gain": -2
+  },
+  {
+   "t": 45.13,
    "type": "scribble",
    "pan": -0.1,
    "gain": -5,
    "dur": 0.5
   },
   {
-   "t": 43.51,
-   "type": "slapSmall",
-   "pan": 0.07,
-   "gain": -2
+   "t": 45.43,
+   "type": "swish",
+   "pan": 0,
+   "gain": -9
   },
   {
-   "t": 46.45,
+   "t": 47.95,
    "type": "whoosh",
    "pan": 0,
    "gain": -1,
    "dur": 0.75
   },
   {
-   "t": 46.55,
+   "t": 48.05,
    "type": "sheet",
    "pan": 0,
    "gain": -3,
    "dur": 0.65
   },
   {
-   "t": 46.7,
+   "t": 48.16,
    "type": "hop",
    "pan": -0.32,
    "gain": -5
   },
   {
-   "t": 47.06,
+   "t": 48.51,
    "type": "slap",
    "pan": -0.18,
    "gain": 0
   },
   {
-   "t": 47.27,
+   "t": 48.73,
    "type": "land",
    "pan": -0.32,
    "gain": -6
   },
   {
-   "t": 47.51,
+   "t": 48.91,
    "type": "slap",
    "pan": -0.18,
    "gain": 0
   },
   {
-   "t": 47.9,
+   "t": 49.2,
    "type": "slide",
    "pan": -0.38,
    "gain": -8
   },
   {
-   "t": 48.108,
+   "t": 49.408,
    "type": "slapSmall",
    "pan": -0.17,
    "gain": -2
   },
   {
-   "t": 48.25,
+   "t": 49.86,
    "type": "slide",
    "pan": -0.38,
    "gain": -8
   },
   {
-   "t": 48.458,
+   "t": 50.068,
    "type": "slapSmall",
    "pan": -0.16,
    "gain": -2
   },
   {
-   "t": 48.8,
+   "t": 50.35,
    "type": "confetti",
    "pan": 0,
    "gain": -3,
    "dur": 4
   },
   {
-   "t": 48.91,
+   "t": 50.46,
    "type": "slap",
    "pan": -0.02,
    "gain": 0
   },
   {
-   "t": 48.98,
+   "t": 50.53,
    "type": "tape",
    "pan": -0.02,
    "gain": -4
   },
   {
-   "t": 49.2,
-   "type": "rustleSmall",
-   "pan": -0.32,
-   "gain": -10
-  },
-  {
-   "t": 49.5,
+   "t": 50.75,
    "type": "scribble",
    "pan": 0.17,
    "gain": -4,
    "dur": 0.585
+  },
+  {
+   "t": 50.75,
+   "type": "rustleSmall",
+   "pan": -0.32,
+   "gain": -10
   }
  ],
  "narration": []

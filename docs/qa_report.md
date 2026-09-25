@@ -11,10 +11,10 @@ File: `export/video.mp4`
 | Video | H.264 High, yuv420p, CRF 18, about 6 Mbit/s ✅ |
 | Audio | AAC-LC 256 kbit/s, 48 kHz stereo ✅ |
 | Faststart | `moov` atom before `mdat` ✅ |
-| File size | 42.6 MB (< 100 MB) ✅ |
+| File size | 41.2 MB (< 100 MB) ✅ |
 | **Integrated loudness** (ffmpeg ebur128, on the MP4) | **−14.0 LUFS** ✅ |
-| **True peak** (ffmpeg ebur128 peak=true, on the MP4) | **−2.7 dBTP** (≤ −1 dBTP) ✅ |
-| Loudness range | 3.7 LU |
+| **True peak** (ffmpeg ebur128 peak=true, on the MP4) | **−2.6 dBTP** (≤ −1 dBTP) ✅ |
+| Loudness range | 3.5 LU |
 | Master WAV | −14.0 LUFS, −3.0 dBTP (headroom for the AAC/MP3 encoders; at 192 kbit/s AAC the peak reached −1.1 dBTP, which is why 256 kbit/s is used) |
 | Limiter | max. 2.8 dB gain reduction, never more than 3 dB (bus limiters on the stems take the transients) |
 
@@ -33,7 +33,20 @@ The full ebur128 summary is in `docs/loudness_final.txt`.
 
 ## Reading time (words ÷ 3 + 0.5 s)
 
-`tools/qa.js`, full table in `docs/qa_pacing.md`: **0 issues**. It counts every text beat, including counters and chart labels. The readable window starts once the entrance animation has settled and ends when the item exits or is covered. The final URL stays on screen for 4.9 s (≥ 3 s required).
+`tools/qa.js`, full table in `docs/qa_pacing.md`: **0 issues**. It counts every text beat, including counters and chart labels. The readable window starts once the entrance animation has settled and ends when the item exits or is covered. The final URL stays on screen for about 3.6 s (≥ 3 s required; `tools/pace.js` enforces at least 3.2 s).
+
+## Pacing (revision 3)
+
+Feedback: lines popped in quickly and then sat on screen. `tools/pace.js` now places each slide's lines one after another at a spoken rhythm (words ÷ 2.6 words/s + 0.35 s pause). The rhythm is scaled so the lines spread across the whole slide and only the last line's reading time is left as a hold at the end. Dependent events move with the lines: character poses, stamps, card ticks, crowd sorting, the money note's return, the chart arrow and the confetti.
+
+- Slide lengths: 7 / 6 / 10.5 / 10.5 / 8 / 6 / 6 s. The last slide went from 7.5 s to 6 s, and that time went to the crowd, good-news and GEM slides. The total is still 54 s.
+- Each slide's closing caption stays on top while the next sheet slides in (as in the reference video), then fades.
+- The study note was split into two short strips, so the slide can end on the one-word stamp instead of a 9-word line.
+- The source credit on the last slide is fine print, visible for the whole slide.
+
+## Music (revision 3)
+
+Music sections now follow the slides via markers in `cues.json`: the stop-time bar falls on the money twist, the riser leads into the good news, and the good-news section starts on the home chord. The last slide gets its own **finale**: a vi–IV–V–I run (Am → F → G → C), four-on-the-floor soft kick, 16th-note shaker, bouncing octave bass, and a marimba melody doubled by glockenspiel that climbs up into the final chord. A marimba pickup leads into it. The level lift is small (about +0.2 LU, then +1.6 LU on the bar before the end), so it isn't a crescendo. The final chord and glockenspiel ding are unchanged.
 
 ## SFX timing
 
