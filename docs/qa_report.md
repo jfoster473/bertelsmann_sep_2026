@@ -28,7 +28,7 @@ The full ebur128 summary is in `docs/loudness_final.txt`.
 | Safe zones (top 250 px, bottom 380 px, right-edge Reels UI) | `tools/qa.js` computes each rotated text box at rest | 0 violations; all key text inside x 50–940, y 250–1540 ✅ |
 | Overlaps | contact sheets (`docs/qa/contact_sheet_1–4.jpg`, 2 fps) | fixed during QA: stamps hiding text, the character over labels, the caption over a stamp, tape over letters ✅ |
 | Flicker | frame-to-frame luminance difference across all 1620 frames | 0 isolated flash frames, 0 A-B-A flicker ✅ |
-| No static moments | same analysis | only 4 frames at the very start (dark opening sheet) had < 0.05 mean change; fixed so the tear starts moving at once. Elsewhere, idle wobble, breathing, blinking and camera drift keep every frame moving ✅ |
+| No static moments | same analysis (final export) | no pauses: at most isolated single frames with very subtle change (idle wobble, breathing, blinking and camera drift always run). The longest stretch of low motion is about 2 s, during the GEM slide's closing hold, where the idle motion continues. The opening dark sheet starts tearing on frame 1 ✅ |
 | Transitions | contact sheets | torn-paper sheet wipes (right/top/left/right/bottom/top), tear-open intro, carry-over elements (money note hook → barriers, survey card → crowd, barrier labels → good-news strips, character throughout) ✅ |
 
 ## Reading time (words ÷ 3 + 0.5 s)
@@ -50,7 +50,7 @@ Music sections now follow the slides via markers in `cues.json`: the stop-time b
 
 ## SFX timing
 
-- Cues come from the same `timeline.js` that drives the visuals (`tools/cues.js` → `cues.json`) and are placed sample-accurately. Drop-in slaps are timed to the spring's landing frame (`E.dropLand`).
+- Cues come from the same `timeline.js` that drives the visuals (`tools/cues.js` → `cues.json`) and are placed sample-accurately. Drop-in thumps are timed to the spring's landing frame (`E.dropLand`), and slide-in thumps to the frame where the slide settles (`E.slideLand`).
 - Cross-check against the export (`docs/qa/sfx_visual_sync.txt`): see that file for the count of transient cues that coincide with visible motion within ±2 frames. The only exceptions are tiny pen ticks on the survey card, which are visible but below the frame-difference threshold at the downscaled resolution.
 - Revision 2 (feedback): text landings now use a **light, soft thump** (low body plus a muffled tap, 0 % of its energy above 2 kHz) instead of the ripping paper slap. Slide-ins also get a thump at the frame where they settle. Tape, card flip, caption and small swishes are now smooth air swishes with no paper crackle. The paper-tear/rustle texture is kept only for the page turns (opening tear, sheet wipes). The SFX bus sits 1.5 LU under the music.
 

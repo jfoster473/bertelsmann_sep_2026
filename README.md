@@ -12,6 +12,7 @@ A 54-second vertical explainer (1080×1920, 30 fps, German, no narration) about 
 
 ## Docs (`docs/`)
 
+- `prompt.md`: the original brief (verbatim) and every feedback round, with what changed
 - `copy.md`: on-screen copy, German + English
 - `facts.md`: every figure with wording, base group, source and **verification status** (read the note at the top)
 - `style_analysis.md`: analysis of the reference video's format
