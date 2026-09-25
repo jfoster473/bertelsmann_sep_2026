@@ -36,6 +36,8 @@
 
   // time at which a "drop" entrance lands (first time the spring reaches 1)
   const DROP_W = 22, DROP_Z = 0.5;
+  // time at which a slide-in entrance settles (spring within 3 % of rest)
+  E.slideLand = (() => { for (let x = 0; x < 2; x += 0.002) if (E.spring(x, 13, 0.62) >= 0.97) return x; return 0.3; })();
   E.dropLand = (() => { for (let x = 0; x < 1; x += 0.002) if (E.spring(x, DROP_W, DROP_Z) >= 1) return x; return 0.1; })();
 
   /** Animated state of an item at time t (null = invisible). */

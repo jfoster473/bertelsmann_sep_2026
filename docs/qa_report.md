@@ -13,8 +13,8 @@ File: `export/video.mp4`
 | Faststart | `moov` atom before `mdat` ✅ |
 | File size | 42.6 MB (< 100 MB) ✅ |
 | **Integrated loudness** (ffmpeg ebur128, on the MP4) | **−14.0 LUFS** ✅ |
-| **True peak** (ffmpeg ebur128 peak=true, on the MP4) | **−2.4 dBTP** (≤ −1 dBTP) ✅ |
-| Loudness range | 4.0 LU |
+| **True peak** (ffmpeg ebur128 peak=true, on the MP4) | **−2.7 dBTP** (≤ −1 dBTP) ✅ |
+| Loudness range | 3.7 LU |
 | Master WAV | −14.0 LUFS, −3.0 dBTP (headroom for the AAC/MP3 encoders; at 192 kbit/s AAC the peak reached −1.1 dBTP, which is why 256 kbit/s is used) |
 | Limiter | max. 2.8 dB gain reduction, never more than 3 dB (bus limiters on the stems take the transients) |
 
@@ -38,7 +38,8 @@ The full ebur128 summary is in `docs/loudness_final.txt`.
 ## SFX timing
 
 - Cues come from the same `timeline.js` that drives the visuals (`tools/cues.js` → `cues.json`) and are placed sample-accurately. Drop-in slaps are timed to the spring's landing frame (`E.dropLand`).
-- Cross-check against the export (`docs/qa/sfx_visual_sync.txt`): 51 of 53 transient cues coincide with visible motion within ±2 frames. The two exceptions are tiny pen ticks on the survey card, which are visible but below the frame-difference threshold at the downscaled resolution.
+- Cross-check against the export (`docs/qa/sfx_visual_sync.txt`): see that file for the count of transient cues that coincide with visible motion within ±2 frames. The only exceptions are tiny pen ticks on the survey card, which are visible but below the frame-difference threshold at the downscaled resolution.
+- Revision 2 (feedback): text landings now use a **light, soft thump** (low body plus a muffled tap, 0 % of its energy above 2 kHz) instead of the ripping paper slap. Slide-ins also get a thump at the frame where they settle. Tape, card flip, caption and small swishes are now smooth air swishes with no paper crackle. The paper-tear/rustle texture is kept only for the page turns (opening tear, sheet wipes). The SFX bus sits 1.5 LU under the music.
 
 ## Figures
 

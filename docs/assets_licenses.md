@@ -21,7 +21,7 @@ Embedded locally as woff2 (latin subset, which covers ä ö ü Ä Ö Ü ß „ �
 **Original, synthesised in code**: `tools/audio/synth.py` (numpy/scipy). No samples and no third-party recordings.
 
 - Music: 120 BPM, C major. Karplus-Strong ukulele strums, marimba melody, plucked bass, soft kick, claps, shaker, glockenspiel, and a riser into the "good news" section. Structure: intro/hook, groove, thoughtful B-section (barriers), stop-time twist, build, bright final section, final chord.
-- SFX: paper slap, tear, tape, rustle, whoosh, sheet slide, stamp, pen tick and scribble, card flip, pops, count ticks, bar "rise", confetti. All are procedural, timed from `project/assets/audio/cues.json`, which is generated from the same timeline as the visuals.
+- SFX: light soft thumps for landing text, gentle air swishes (slides, flips, captions), page-turn tear / sheet slide / whoosh, stamp, pen tick and scribble, pops, count ticks, bar "rise", confetti. All are procedural, timed from `project/assets/audio/cues.json`, which is generated from the same timeline as the visuals.
 - Licence: made for this project; no third-party rights involved.
 
 ## Tools

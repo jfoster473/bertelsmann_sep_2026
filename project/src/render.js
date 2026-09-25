@@ -128,7 +128,7 @@
       else if (it.type === 'caption') add(it.in, 'swish', 540, -9);
       else if (enter === 'stamp') add(it.in + 0.11, 'stamp', x, 0);
       else if (enter === 'drop') add(it.in + land, it.font === 'headline' || it.font === 'shout' || it.font === 'headlineItalic' ? 'slap' : 'slapSmall', x, 0);
-      else if (enter === 'slideL' || enter === 'slideR') add(it.in, 'slide', enter === 'slideL' ? 200 : 880, -3);
+      else if (enter === 'slideL' || enter === 'slideR') { add(it.in, 'slide', enter === 'slideL' ? 200 : 880, -8); add(it.in + E.slideLand, 'slapSmall', x, -2); }
       else if (enter === 'flip') add(it.in - 0.05, 'flip', x, -2);
       if (it.tape) add(it.in + 0.18, 'tape', x, -4);
       if (it.exit === 'fly') add(it.out - 0.4, 'whooshSmall', x, -6);

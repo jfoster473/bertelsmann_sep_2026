@@ -399,7 +399,8 @@ def s_whoosh(dur=0.6, small=False):
     x = noise(n)
     y = sweep_bp(x, 500 if not small else 900, 2600 if not small else 4200, 900 if not small else 1600, q=1.8)
     y *= hump(n, 0.55, 1.6)
-    y += s_rustle(dur, 350, 2000, 9000)[:n] * 0.25 * hump(n, 0.6, 1)
+    if not small:  # page-turn whoosh keeps a little paper texture; small ones stay smooth
+        y += s_rustle(dur, 350, 2000, 9000)[:n] * 0.25 * hump(n, 0.6, 1)
     return norm(y)
 
 
@@ -489,7 +490,7 @@ def s_hop():
     n = int(0.16 * SR)
     t = np.arange(n) / SR
     y = np.sin(2 * np.pi * np.cumsum(280 + 420 * (t / 0.16)) / SR) * hump(n, 0.2, 1) * 0.5
-    return norm(y + s_rustle(0.16, 700) * 0.5)
+    return norm(y + s_softswish(0.16, 300, 1400) * 0.4)
 
 
 def s_land():
@@ -501,8 +502,7 @@ def s_land():
 def s_slide(dur=0.5):
     n = int(dur * SR)
     t = np.linspace(0, 1, n)
-    x = filt(sos_bp(900, 6000), noise(n)) * (0.6 + 0.4 * filt(sos_lp(30), noise(n)) * 3)
-    return norm(x * hump(n, 0.75, 0.9) + s_rustle(dur, 300) * 0.3)
+    return s_softswish(dur, 300, 1800)
 
 
 def s_rise(dur=0.8):
@@ -516,7 +516,7 @@ def s_rise(dur=0.8):
 def s_burst():
     n = int(0.45 * SR)
     t = np.arange(n) / SR
-    y = filt(sos_bp(1500, 9000), crackle(n, 6000 * np.exp(-t / 0.12) + 10))
+    y = s_softswish(0.45, 400, 2500) * 0.6
     p = s_pop(1.2)
     y[: len(p)] += p * 0.8
     return norm(y)
@@ -532,12 +532,12 @@ def s_pop_cascade(dur=1.0):
         i = int(tt * SR)
         m = min(len(p), n - i)
         y[i:i + m] += p[:m] * r.uniform(0.4, 0.8)
-    return norm(y + s_rustle(dur, 400) * 0.3)
+    return norm(y + s_softswish(dur, 300, 1500) * 0.2)
 
 
 def s_shuffle(dur=1.0):
     n = int(dur * SR)
-    y = s_rustle(dur, 1400, 900, 7000) * 0.6
+    y = s_softswish(dur, 300, 1500) * 0.5
     r = np.random.default_rng(9)
     for k in range(26):
         tt = r.uniform(0, dur - 0.1)
@@ -574,21 +574,41 @@ def s_confetti(dur=4.0):
     return norm(y * np.exp(-t / 2.2))
 
 
+def s_thump(weight=1.0):
+    """Light, soft paper-on-table thump for text landing: low body + muffled tap, no crackle."""
+    n = int(0.16 * SR)
+    t = np.arange(n) / SR
+    f0 = 150 - 45 * weight
+    f = f0 * (1 + 0.5 * np.exp(-t / 0.012))
+    body = np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t / (0.03 + 0.02 * weight))
+    tap = filt(sos_lp(900), noise(n)) * np.exp(-t / 0.005) * 0.3
+    y = (body + tap) * np.minimum(1, t / 0.002)
+    return norm(filt(sos_lp(2500), y))
+
+
+def s_softswish(dur=0.3, lo=250, hi=1600):
+    """Gentle air movement, smooth envelope, no paper crackle."""
+    n = int(dur * SR)
+    y = filt(sos_bp(lo, hi), noise(n)) * hump(n, 0.45, 1.8)
+    return norm(filt(sos_lp(hi * 1.2), y))
+
+
 SFX = {
-    'slap': lambda c: s_slap(True), 'slapSmall': lambda c: s_slap(False), 'pop': lambda c: s_pop(1.0),
-    'rustleSmall': lambda c: s_rustle(0.16, 700), 'swish': lambda c: s_whoosh(0.32, small=True),
+    # text landing: light thumps (no ripping); page turns keep tear/sheet/whoosh
+    'slap': lambda c: s_thump(1.0), 'slapSmall': lambda c: s_thump(0.6), 'pop': lambda c: s_pop(1.0),
+    'rustleSmall': lambda c: s_softswish(0.14, 300, 1400), 'swish': lambda c: s_softswish(0.3, 300, 1800),
     'whoosh': lambda c: s_whoosh(max(0.45, c.get('dur', 0.6))), 'whooshSmall': lambda c: s_whoosh(min(0.5, max(0.3, c.get('dur', 0.4))), small=True),
-    'sheet': lambda c: s_sheet(c.get('dur', 0.6)), 'tear': lambda c: s_tear(max(0.45, c.get('dur', 0.5))), 'tape': lambda c: s_tape(),
+    'sheet': lambda c: s_sheet(c.get('dur', 0.6)), 'tear': lambda c: s_tear(max(0.45, c.get('dur', 0.5))), 'tape': lambda c: s_thump(0.3),
     'tick': lambda c: s_tick(), 'stamp': lambda c: s_stamp(), 'count': lambda c: s_count(c.get('dur', 0.6)),
-    'scribble': lambda c: s_scribble(c.get('dur', 0.6)), 'flip': lambda c: s_flip(), 'hop': lambda c: s_hop(), 'land': lambda c: s_land(),
+    'scribble': lambda c: s_scribble(c.get('dur', 0.6)), 'flip': lambda c: s_softswish(0.18, 400, 2000), 'hop': lambda c: s_hop(), 'land': lambda c: s_land(),
     'slide': lambda c: s_slide(c.get('dur', 0.45)), 'rise': lambda c: s_rise(c.get('dur', 0.8)), 'burst': lambda c: s_burst(),
     'popCascade': lambda c: s_pop_cascade(c.get('dur', 1.0)), 'shuffle': lambda c: s_shuffle(c.get('dur', 1.0)), 'cheer': lambda c: s_cheer(),
     'confetti': lambda c: s_confetti(c.get('dur', 4.0)),
 }
 SFX_LEVEL = {  # base level per type (linear, before cue gain in dB)
-    'slap': 0.55, 'slapSmall': 0.4, 'pop': 0.3, 'rustleSmall': 0.25, 'swish': 0.18, 'whoosh': 0.4, 'whooshSmall': 0.25,
-    'sheet': 0.3, 'tear': 0.6, 'tape': 0.3, 'tick': 0.3, 'stamp': 0.6, 'count': 0.18, 'scribble': 0.25, 'flip': 0.35,
-    'hop': 0.2, 'land': 0.25, 'slide': 0.25, 'rise': 0.25, 'burst': 0.45, 'popCascade': 0.3, 'shuffle': 0.35, 'cheer': 0.25, 'confetti': 0.45,
+    'slap': 0.32, 'slapSmall': 0.24, 'pop': 0.3, 'rustleSmall': 0.12, 'swish': 0.12, 'whoosh': 0.4, 'whooshSmall': 0.2,
+    'sheet': 0.3, 'tear': 0.6, 'tape': 0.14, 'tick': 0.25, 'stamp': 0.45, 'count': 0.18, 'scribble': 0.2, 'flip': 0.18,
+    'hop': 0.2, 'land': 0.22, 'slide': 0.16, 'rise': 0.22, 'burst': 0.35, 'popCascade': 0.3, 'shuffle': 0.3, 'cheer': 0.25, 'confetti': 0.4,
 }
 
 
@@ -670,12 +690,12 @@ def main():
     lm = meter.integrated_loudness(music.T)
     music *= db(-20 - lm)
     ls = meter.integrated_loudness(sfx.T)
-    sfx *= db(-19 - ls)
+    sfx *= db(-21.5 - ls)
     # bus limiting: tame SFX transients (stamps, slaps) and music peaks before
     # the master limiter, so the master only has to catch the odd overlap
     sfx = limiter(sfx, -10.0, look=0.002, release=0.05)
     music = limiter(music, -8.0, look=0.004, release=0.12)
-    sfx *= db(-19 - meter.integrated_loudness(sfx.T))
+    sfx *= db(-21.5 - meter.integrated_loudness(sfx.T))
     music *= db(-20 - meter.integrated_loudness(music.T))
     if active.any():  # duck music under narration
         duck = 1 - 0.5 * signal.convolve(active, np.ones(int(0.2 * SR)) / int(0.2 * SR), mode='same')

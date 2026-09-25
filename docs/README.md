@@ -76,10 +76,10 @@ node tools/test_player.js          # optional: controls + sync test
 
 `tools/audio/synth.py` is the whole audio pipeline:
 
-- **Music balance**: in `main()`, `music *= db(-20 - lm)` sets the music bed and `sfx *= db(-19 - ls)` the SFX (before the master gain).
+- **Music balance**: in `main()`, `music *= db(-20 - lm)` sets the music bed and `sfx *= db(-21.5 - ls)` the SFX (before the master gain).
 - **Arrangement**: `arrangement()` lists, bar by bar (2 s per bar at 120 BPM), the chord and which parts play. Chord voicings are in `CH` and melodies in `MEL`.
-- **SFX**: each cue type has a generator (`s_slap`, `s_tear`, `s_tape`, …) and a level in `SFX_LEVEL`.
-- **Master**: the target is -14 LUFS integrated, and `CEILING_DBTP = -3.0` gives the lossy encoders headroom. The final MP4 measures -2.4 dBTP.
+- **SFX**: each cue type maps to a generator in the `SFX` table (`s_thump` for landing text, `s_softswish`, `s_tear` for page turns, …) and a level in `SFX_LEVEL`.
+- **Master**: the target is -14 LUFS integrated, and `CEILING_DBTP = -3.0` gives the lossy encoders headroom. The final MP4 measures -2.7 dBTP.
 
 ## Add narration later
 
