@@ -1,0 +1,11 @@
+/* gen now brand fonts (as used on gennow.de): Bricolage Grotesque (headlines) and Lato (text),
+   plus Caveat for handwriting. All SIL Open Font License 1.1 (see LICENSE-*.txt), latin subset from @fontsource. */
+@font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 400; font-display: block; src: url('bricolage-grotesque-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 500; font-display: block; src: url('bricolage-grotesque-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 700; font-display: block; src: url('bricolage-grotesque-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Bricolage Grotesque'; font-style: normal; font-weight: 800; font-display: block; src: url('bricolage-grotesque-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Lato'; font-style: normal; font-weight: 400; font-display: block; src: url('lato-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Lato'; font-style: normal; font-weight: 700; font-display: block; src: url('lato-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Lato'; font-style: normal; font-weight: 900; font-display: block; src: url('lato-latin-900-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Lato'; font-style: italic; font-weight: 900; font-display: block; src: url('lato-latin-900-italic.woff2') format('woff2'); }
+@font-face { font-family: 'Caveat'; font-style: normal; font-weight: 700; font-display: block; src: url('caveat-latin-700-normal.woff2') format('woff2'); }

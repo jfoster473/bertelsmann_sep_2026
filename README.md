@@ -2,6 +2,13 @@
 
 A 54-second vertical explainer (1080×1920, 30 fps, German, no narration) about the Bertelsmann Stiftung study *Gründungsaufbruch der jungen Generation* (2026). It ends on the Young Founders Network as a concrete next step.
 
+## Versions
+
+| Version | Folder | Video |
+|---|---|---|
+| Original (paper collage, neutral palette) | this folder: `project/`, `export/`, `docs/`, `tools/` | `export/video.mp4` |
+| **gen now** branding (gennow.de colours, fonts and logo) | `versions/gennow/` (self-contained copy, see its README) | `versions/gennow/export/video.mp4` |
+
 ## Downloads (`export/`)
 
 | File | What |
