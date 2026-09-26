@@ -112,3 +112,12 @@ This file holds the original brief exactly as given (the uploaded style referenc
 > Did you update all of the readme/md files? And also, did you put the prompt in there?
 
 **Changed:** this file was added, the README links to it, and the remaining stale notes in `docs/` were updated.
+
+## Follow-up: gen now version
+
+> Could you create another version of this video with the branding from https://gennow.de/
+>
+> Please keep the previous version and everything needed to replicate it.
+
+**Done as a separate version:** everything above stays unchanged. The gen now version is a self-contained copy in `versions/gennow/`; its request, the questions asked and the answers are in `versions/gennow/docs/prompt.md`.
+

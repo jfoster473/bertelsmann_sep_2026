@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gründen? Ich doch nicht · gen now</title>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<style>
+  :root { --bg: #0b2f5c; --panel: #0c55a6; --ink: #ffffff; --muted: #cfe3f7; --accent: #fcdf48; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink); font-family: Lato, system-ui, sans-serif; }
+  body { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 12px 16px; }
+  #stage { position: relative; height: calc(100vh - 110px); aspect-ratio: 9 / 16; max-width: 100%; background: #000; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,.5); }
+  #stage canvas { width: 100%; height: 100%; display: block; }
+  #overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.25); cursor: pointer; font-weight: 800; font-size: 20px; letter-spacing: .04em; }
+  #overlay.hidden { display: none; }
+  #overlay span { background: var(--accent); color: #1e1b18; padding: 14px 24px; border-radius: 999px; }
+  #controls { display: flex; align-items: center; gap: 10px; width: min(100%, 560px); background: var(--panel); padding: 8px 12px; border-radius: 12px; }
+  #controls button { background: none; border: 0; color: var(--ink); font: 700 15px Lato, sans-serif; cursor: pointer; padding: 6px 8px; border-radius: 8px; min-width: 40px; }
+  #controls button:hover, #controls button:focus-visible { background: rgba(255,255,255,.08); outline: none; }
+  #scrub { flex: 1; accent-color: var(--accent); }
+  #time { font: 700 13px Lato, sans-serif; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 92px; text-align: right; }
+  body.export { padding: 0; display: block; background: #000; }
+  body.export #controls, body.export #overlay { display: none; }
+  body.export #stage { height: auto; width: 1080px; border-radius: 0; box-shadow: none; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="c" width="1080" height="1920" aria-label="Animiertes Erklärvideo: Gründungsaufbruch der jungen Generation"></canvas>
+  <div id="overlay"><span>Lädt …</span></div>
+</div>
+<div id="controls">
+  <button id="play" title="Abspielen/Pause (Leertaste)" aria-label="Abspielen">▶</button>
+  <button id="restart" title="Neustart (R)" aria-label="Neustart">↺</button>
+  <input id="scrub" type="range" min="0" max="54" step="0.0333" value="0" aria-label="Zeitleiste">
+  <span id="time">0:00.0 / 0:54.0</span>
+  <button id="mute" title="Ton an/aus (M)" aria-label="Ton aus">🔊</button>
+</div>
+<audio id="audio" src="assets/audio/mix.mp3" preload="auto"></audio>
+<!--SCRIPTS-->
+<script src="src/engine/core.js"></script>
+<script src="src/engine/paper.js"></script>
+<script src="src/engine/character.js"></script>
+<script src="src/engine/items.js"></script>
+<script src="src/engine/brand_assets.js"></script>
+<script src="src/engine/brand.js"></script>
+<script src="src/data/timeline.js"></script>
+<script src="src/scenes.js"></script>
+<script src="src/render.js"></script>
+<script src="src/player.js"></script>
+<!--/SCRIPTS-->
+</body>
+</html>
